@@ -2,10 +2,29 @@
   "name": "@essenti-ui/ui",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "exports": {
-    "./*": "./src/*.tsx"
+    "./Button": {
+      "types": "./dist/Button.d.ts",
+      "import": "./dist/Button.js"
+    },
+    "./Input": {
+      "types": "./dist/Input.d.ts",
+      "import": "./dist/Input.js"
+    },
+    "./Field": {
+      "types": "./dist/Field.d.ts",
+      "import": "./dist/Field.js"
+    },
+    "./Table": {
+      "types": "./dist/Table.d.ts",
+      "import": "./dist/Table.js"
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "scripts": {
+    "build": "tsup && node scripts/build-css.mjs",
+    "dev": "tsup --watch",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit"
@@ -23,6 +42,10 @@
     "eslint": "^9.39.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "tsup": "^8.0.0",
     "typescript": "5.9.2"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
   }
 }
