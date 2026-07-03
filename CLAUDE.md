@@ -23,11 +23,42 @@ Otherwise it is over-engineering.
 
 ## Design Direction
 
-- Focus areas: simplicity, whitespace, restraint
+- Focus areas: simplicity, whitespace, restraint, structurally predictable
 - Density: medium (4px base, 8px rhythm)
+- Typography: Inter (primary)
 
 Borders = semantic separators only.
 Depth = tone/lightness (no shadow-driven hierarchy).
+
+## UI Abstraction Model
+
+All components follow a shared 4-layer architecture
+
+### 1. Behavior Layer
+
+- state management (loading, disabled, active, etc.)
+- interaction handling (click, keyboard, focus)
+- polymorphic behavior (as prop where applicable)
+
+### 2. Structure Layer
+
+- DOM structure and composition
+- slot architecture (content, icon, label, etc.)
+- element hierarchy
+
+### 3. Accessibility Layer
+
+- ARIA attributes (aria-*)
+- semantic role mapping
+- keyboard navigation support
+- form wiring (label, description, error linkage)
+
+### 4. Styling Layer
+
+- semantic tokens only (no raw values)
+- variant mapping (primary, secondary, ghost, etc.)
+- size system (sm, md, lg)
+- layout modifiers (e.g. fullWidth)
 
 ## Tokens (strict)
 
@@ -38,7 +69,7 @@ Tier model:
 - Primitive: raw values (NOT used in UI)
 - Semantic: UI contract layer (ONLY layer used by components)
 
-Rule: Components must only use semantic tokens.
+Rule: ESLint custom rules enforce semantic token usage. Primitive token imports are forbidden.
 Dark mode = semantic remapping only (no component logic changes).
 
 ## Packaging
@@ -63,6 +94,10 @@ Rule:
 - If blocked, do not bypass constraints. Stop and ask for guidance.
 
 ## Components
+
+All components MUST implement UI Abstraction Model layers explicitly.
+
+Core UI primitives:
 
 - Button: interaction states, variants, polymorphism, focus
 - Input + Field: form accessibility wiring, label/description/error
