@@ -86,7 +86,7 @@ Base UI: headless behavior layer (peerDep if duplication risk).
 Dev: Tailwind. Ship: compiled `dist/styles.css` only.
 
 Consumer:
-import "@repo/ui/styles.css";
+import "@essenti-ui/ui/styles.css";
 
 Rule:
 
