@@ -2,5 +2,13 @@
   "name": "@essenti-ui/tokens",
   "version": "0.0.0",
   "private": true,
-  "description": "Design tokens via Style Dictionary"
+  "type": "module",
+  "description": "Design tokens via Style Dictionary",
+  "scripts": {
+    "build": "node sd.config.mjs",
+    "build:watch": "node --watch sd.config.mjs"
+  },
+  "dependencies": {
+    "style-dictionary": "^4.3.0"
+  }
 }
