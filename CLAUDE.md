@@ -48,7 +48,7 @@ All components follow a shared 4-layer architecture
 
 ### 3. Accessibility Layer
 
-- ARIA attributes (aria-*)
+- ARIA attributes (aria-\*)
 - semantic role mapping
 - keyboard navigation support
 - form wiring (label, description, error linkage)
