@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -8,8 +8,13 @@ const srcDir = join(here, '../src');
 const distDir = join(here, '../dist');
 
 mkdirSync(distDir, { recursive: true });
+mkdirSync(join(distDir, 'fonts'), { recursive: true });
 
 const read = (path) => readFileSync(path, 'utf8');
+
+['InterVariable.woff2', 'JetBrainsMono-Regular.woff2'].forEach((file) => {
+  copyFileSync(join(srcDir, 'fonts', file), join(distDir, 'fonts', file));
+});
 
 // @essenti-ui/tokens ships unlayered custom-property declarations —
 // wrap them here so they slot into the shared cascade layer order below.
@@ -25,6 +30,7 @@ const parts = [
   '@layer reset, tokens, base, components, utilities;\n',
   ...tokenLayerFiles,
   read(join(srcDir, 'styles', 'tokens.css')),
+  read(join(srcDir, 'styles', 'base.css')),
   ...componentFiles,
 ];
 

@@ -15,7 +15,8 @@
     --font-sans:
       'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --font-mono:
+      'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     --font-feature-default: 'cv05' 1, 'cv11' 1;
     --font-feature-tabular: 'tnum' 1, 'cv05' 1;
 

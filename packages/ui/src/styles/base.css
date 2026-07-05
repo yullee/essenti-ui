@@ -1,0 +1,27 @@
+/* ── Self-hosted fonts ─────────────────────────────────────────────
+  Font files live in src/fonts/ and are copied to dist/fonts/ at
+  build time (see scripts/build-css.mjs). Fall back to the system
+  stacks in --font-sans / --font-mono (see tokens.css) if a file is
+  ever missing.
+
+  Inter ships as a single variable file (weights 100–900) since
+  --font-sans is used everywhere at varying weights. JetBrains Mono
+  ships Regular only — --font-mono has no current consumer, so
+  there's no case yet for other weights.
+   ============================================================ */
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    src: url('./fonts/InterVariable.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: url('./fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+}
