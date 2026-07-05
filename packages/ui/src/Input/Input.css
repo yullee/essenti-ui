@@ -1,0 +1,81 @@
+/* ─ Input ──────────────────────────────────────────────────── */
+@layer components {
+  .es-input {
+    display: flex;
+    align-items: center;
+    gap: var(--essenti-space-2);
+    width: 100%;
+    background: var(--essenti-surface-raised);
+    border: 1px solid var(--essenti-border-default);
+    border-radius: var(--essenti-radius-md);
+    color: var(--essenti-text-primary);
+    transition: var(--transition-colors);
+    cursor: text;
+  }
+  .es-input--sm {
+    height: var(--control-height-sm);
+    padding: 0 var(--essenti-space-3);
+    font-size: var(--font-size-body-sm);
+  }
+  .es-input--md {
+    height: var(--control-height-md);
+    padding: 0 var(--essenti-space-4);
+    font-size: var(--font-size-body-md);
+  }
+  .es-input--lg {
+    height: var(--control-height-lg);
+    padding: 0 var(--essenti-space-4);
+    font-size: var(--font-size-body-lg);
+  }
+  .es-input:hover:not(.es-input--disabled) {
+    border-color: var(--essenti-border-strong);
+  }
+  .es-input:focus-within {
+    border-color: var(--essenti-border-focus);
+    box-shadow: var(--ring-accent);
+  }
+  .es-input--invalid {
+    border-color: var(--danger-solid);
+  }
+  .es-input--invalid:focus-within {
+    box-shadow: var(--ring-danger);
+  }
+  .es-input--disabled {
+    background: var(--essenti-surface-sunken);
+    color: var(--essenti-text-disabled);
+    cursor: not-allowed;
+  }
+  .es-input__control {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    height: 100%;
+  }
+  .es-input__control::placeholder {
+    color: var(--essenti-text-disabled);
+  }
+  .es-input__control:focus,
+  .es-input__control:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+  .es-input__control:disabled {
+    cursor: not-allowed;
+  }
+  .es-input__affix {
+    color: var(--essenti-text-muted);
+    font-size: 0.95em;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+  }
+  .es-input--tnum .es-input__control {
+    font-feature-settings: var(--font-feature-tabular);
+    font-variant-numeric: tabular-nums;
+  }
+}
