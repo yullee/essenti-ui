@@ -8,6 +8,11 @@
   Requires a `data-theme="light"` or `data-theme="dark"` attribute on
   an ancestor element (e.g. <html>) — that's what activates the
   semantic color tokens from @essenti-ui/tokens.
+
+  Brand accent defaults to jade with no attribute needed. Set
+  `data-accent="sapphire"` on an ancestor element to switch it — see
+  @essenti-ui/tokens' jade.css/sapphire.css. success/data-up stay a
+  fixed green regardless of the active accent.
    ============================================================ */
 @layer tokens {
   :root {
@@ -58,9 +63,9 @@
     /* Status: solid / soft / on-soft — extends @essenti-ui/tokens'
        accent-only soft/solid pair to success/danger/warning/info.
        Candidates for promotion into the shared semantic layer. */
-    --success-solid: var(--essenti-color-accent-500);
-    --success-soft: var(--essenti-color-accent-50);
-    --success-on-soft: var(--essenti-color-accent-700);
+    --success-solid: var(--essenti-color-green-500);
+    --success-soft: var(--essenti-color-green-50);
+    --success-on-soft: var(--essenti-color-green-700);
 
     --danger-solid: var(--essenti-color-red-500);
     --danger-hover: var(--essenti-color-red-600);
@@ -75,8 +80,9 @@
     --info-soft: var(--essenti-color-blue-50);
     --info-on-soft: var(--essenti-color-blue-700);
 
-    /* Directional data (up/down/flat trend signal) */
-    --data-up: var(--essenti-color-accent-600);
+    /* Directional data (up/down/flat trend signal) — always green/red,
+       independent of the active brand accent (data-accent). */
+    --data-up: var(--essenti-color-green-600);
     --data-down: var(--essenti-color-red-600);
     --data-flat: var(--essenti-color-neutral-500);
 
@@ -115,10 +121,10 @@
   [data-theme='dark'] {
     --success-soft: color-mix(
       in srgb,
-      var(--essenti-color-accent-500) 16%,
+      var(--essenti-color-green-500) 16%,
       var(--essenti-color-neutral-925)
     );
-    --success-on-soft: var(--essenti-color-accent-300);
+    --success-on-soft: var(--essenti-color-green-300);
     --danger-soft: color-mix(
       in srgb,
       var(--essenti-color-red-500) 18%,
@@ -138,7 +144,7 @@
     );
     --info-on-soft: var(--essenti-color-blue-300);
 
-    --data-up: var(--essenti-color-accent-300);
+    --data-up: var(--essenti-color-green-300);
     --data-down: var(--essenti-color-red-300);
     --data-flat: var(--essenti-color-neutral-450);
 

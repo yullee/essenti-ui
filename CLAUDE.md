@@ -71,6 +71,7 @@ Tier model:
 
 Rule: ESLint custom rules enforce semantic token usage. Primitive token imports are forbidden.
 Dark mode = semantic remapping only (no component logic changes).
+Accent theme = `data-accent` attribute remapping (jade default, sapphire optional), semantic only — no component logic changes.
 
 ## Packaging
 
@@ -132,7 +133,6 @@ Table:
 
 ## Deferred
 
-- multi-brand system
 - tier 3 tokens
 - CI/CD, changesets, generators
 - visual regression tools

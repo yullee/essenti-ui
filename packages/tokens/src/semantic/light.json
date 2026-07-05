@@ -16,7 +16,7 @@
     "onAccent": { "$value": "{color.white}", "$type": "color" },
     "onInverse": { "$value": "{color.neutral.100}", "$type": "color" },
     "accent": { "$value": "{color.accent.600}", "$type": "color" },
-    "success": { "$value": "{color.accent.600}", "$type": "color" },
+    "success": { "$value": "{color.green.600}", "$type": "color" },
     "danger": { "$value": "{color.red.600}", "$type": "color" },
     "warning": { "$value": "{color.amber.700}", "$type": "color" },
     "info": { "$value": "{color.blue.600}", "$type": "color" }
@@ -36,25 +36,27 @@
     "softHover": { "$value": "{color.accent.100}", "$type": "color" },
     "onSoft": { "$value": "{color.accent.700}", "$type": "color" }
   },
-  "danger": {
-    "solid": { "$value": "{color.red.500}", "$type": "color" },
-    "hover": { "$value": "{color.red.600}", "$type": "color" },
-    "soft": { "$value": "{color.red.50}", "$type": "color" },
-    "onSoft": { "$value": "{color.red.700}", "$type": "color" }
-  },
-  "warning": {
-    "solid": { "$value": "{color.amber.500}", "$type": "color" },
-    "soft": { "$value": "{color.amber.50}", "$type": "color" },
-    "onSoft": { "$value": "{color.amber.700}", "$type": "color" }
-  },
-  "info": {
-    "solid": { "$value": "{color.blue.500}", "$type": "color" },
-    "soft": { "$value": "{color.blue.50}", "$type": "color" },
-    "onSoft": { "$value": "{color.blue.700}", "$type": "color" }
-  },
-  "success": {
-    "solid": { "$value": "{color.accent.500}", "$type": "color" },
-    "soft": { "$value": "{color.accent.50}", "$type": "color" },
-    "onSoft": { "$value": "{color.accent.700}", "$type": "color" }
+  "status": {
+    "danger": {
+      "solid": { "$value": "{color.red.500}", "$type": "color" },
+      "hover": { "$value": "{color.red.600}", "$type": "color" },
+      "soft": { "$value": "{color.red.50}", "$type": "color" },
+      "onSoft": { "$value": "{color.red.700}", "$type": "color" }
+    },
+    "warning": {
+      "solid": { "$value": "{color.amber.500}", "$type": "color" },
+      "soft": { "$value": "{color.amber.50}", "$type": "color" },
+      "onSoft": { "$value": "{color.amber.700}", "$type": "color" }
+    },
+    "info": {
+      "solid": { "$value": "{color.blue.500}", "$type": "color" },
+      "soft": { "$value": "{color.blue.50}", "$type": "color" },
+      "onSoft": { "$value": "{color.blue.700}", "$type": "color" }
+    },
+    "success": {
+      "solid": { "$value": "{color.green.500}", "$type": "color" },
+      "soft": { "$value": "{color.green.50}", "$type": "color" },
+      "onSoft": { "$value": "{color.green.700}", "$type": "color" }
+    }
   }
 }

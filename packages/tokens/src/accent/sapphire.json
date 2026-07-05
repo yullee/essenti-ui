@@ -1,0 +1,16 @@
+{
+  "color": {
+    "accent": {
+      "50": { "$value": "{color.sapphire.50}", "$type": "color" },
+      "100": { "$value": "{color.sapphire.100}", "$type": "color" },
+      "200": { "$value": "{color.sapphire.200}", "$type": "color" },
+      "300": { "$value": "{color.sapphire.300}", "$type": "color" },
+      "400": { "$value": "{color.sapphire.400}", "$type": "color" },
+      "500": { "$value": "{color.sapphire.500}", "$type": "color" },
+      "600": { "$value": "{color.sapphire.600}", "$type": "color" },
+      "700": { "$value": "{color.sapphire.700}", "$type": "color" },
+      "800": { "$value": "{color.sapphire.800}", "$type": "color" },
+      "900": { "$value": "{color.sapphire.900}", "$type": "color" }
+    }
+  }
+}
