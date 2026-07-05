@@ -1,0 +1,116 @@
+/* ─ Table ──────────────────────────────────────────────────── */
+@layer components {
+  .es-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .es-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    color: var(--essenti-text-primary);
+    font-size: var(--font-size-body-sm);
+  }
+
+  .es-table__caption {
+    caption-side: top;
+    text-align: left;
+    color: var(--essenti-text-muted);
+    font-size: var(--font-size-body-sm);
+    margin-bottom: var(--essenti-space-2);
+  }
+
+  /* Header — horizontal divider only, no vertical borders */
+  .es-table thead th {
+    text-align: left;
+    font-weight: var(--weight-medium);
+    color: var(--essenti-text-muted);
+    font-size: var(--font-size-caption);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--essenti-border-default);
+    background: var(--essenti-surface-canvas);
+  }
+  .es-table[data-sticky='true'] thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  /* Sortable header button — inherits the th's text styling */
+  .es-th__sort {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--essenti-space-1);
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+  }
+  .es-th__sort:focus-visible {
+    outline: none;
+    box-shadow: var(--ring-accent);
+    border-radius: var(--essenti-radius-sm);
+  }
+
+  /* Body — horizontal row dividers only */
+  .es-table tbody td {
+    border-bottom: 1px solid var(--essenti-border-subtle);
+    color: var(--essenti-text-secondary);
+    vertical-align: middle;
+  }
+  .es-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+  .es-table tbody tr[role='button'] {
+    cursor: pointer;
+  }
+  .es-table tbody tr[role='button']:focus-visible {
+    outline: none;
+    box-shadow: inset var(--ring-accent);
+  }
+
+  /* Hover rows */
+  .es-table--hover tbody tr {
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+  .es-table--hover tbody tr:hover td {
+    background: var(--essenti-surface-hover);
+  }
+
+  /* Density — data-density attribute drives padding */
+  .es-table[data-density='comfortable'] th,
+  .es-table[data-density='comfortable'] td {
+    padding: var(--essenti-space-3) var(--essenti-space-4);
+  }
+  .es-table[data-density='compact'] th,
+  .es-table[data-density='compact'] td {
+    padding: var(--essenti-space-2) var(--essenti-space-3);
+  }
+  .es-table[data-density='spacious'] th,
+  .es-table[data-density='spacious'] td {
+    padding: var(--essenti-space-4) var(--essenti-space-5);
+  }
+
+  /* Numeric columns — tabular figures + right-align */
+  .es-table .es-td--num,
+  .es-table .es-th--num {
+    text-align: right;
+    font-feature-settings: var(--font-feature-tabular);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .es-table .es-td--center,
+  .es-table .es-th--center {
+    text-align: center;
+  }
+
+  /* Primary column — emphasised text */
+  .es-table__primary {
+    color: var(--essenti-text-primary);
+    font-weight: var(--weight-medium);
+  }
+}
