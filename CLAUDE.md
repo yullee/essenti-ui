@@ -77,11 +77,16 @@ Accent theme = `data-accent` attribute remapping (jade default, sapphire optiona
 
 - React library (ESM, tsup)
 - per-component exports
-- Source layout: `src/<Component>/{Component.tsx, Component.css, index.ts}`; shared tokens in `src/styles/`
+- Source layout: `src/<Component>/{Component.tsx, Component.css, index.ts, Component.stories.tsx}`; shared tokens in `src/styles/`
 - React is peerDependency (^18 || ^19)
 
 Rule: Never bundle React (avoid runtime duplication issues).
 Base UI: headless behavior layer (peerDep if duplication risk).
+
+## Component Docs
+
+Storybook (`pnpm --filter @essenti-ui/ui storybook`), addons limited to a11y + docs.
+Rule: Storybook is a dev-only playground, not a build/ship target. Visual regression tooling (e.g. Chromatic) stays in Deferred — adding Storybook does not reopen that.
 
 ## CSS Strategy
 
