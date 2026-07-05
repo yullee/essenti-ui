@@ -1,0 +1,149 @@
+/* ── Local tokens — not yet part of @essenti-ui/tokens ─────────────
+  Primitive + semantic color/radius/space/typography-scale tokens come
+  from @essenti-ui/tokens (bundled in at build time — see
+  scripts/build-css.mjs). This file only defines tokens that don't
+  exist there yet (typography roles, motion, focus rings, extended
+  status colors).
+
+  Requires a `data-theme="light"` or `data-theme="dark"` attribute on
+  an ancestor element (e.g. <html>) — that's what activates the
+  semantic color tokens from @essenti-ui/tokens.
+   ============================================================ */
+@layer tokens {
+  :root {
+    /* Typography */
+    --font-sans:
+      'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --font-feature-default: 'cv05' 1, 'cv11' 1;
+    --font-feature-tabular: 'tnum' 1, 'cv05' 1;
+
+    --weight-regular: var(--essenti-font-weight-regular);
+    --weight-medium: var(--essenti-font-weight-medium);
+    --weight-semibold: var(--essenti-font-weight-semibold);
+    --weight-bold: var(--essenti-font-weight-bold);
+
+    --font-size-display-lg: 48px;
+    --font-size-display-md: 36px;
+    --font-size-display-sm: 28px;
+    --font-size-heading-lg: 22px;
+    --font-size-heading-md: 18px;
+    --font-size-heading-sm: 16px;
+    --font-size-body-lg: 16px;
+    --font-size-body-md: 15px;
+    --font-size-body-sm: 14px;
+    --font-size-body-xs: 13px;
+    --font-size-caption: 12px;
+    --font-size-micro: 11px;
+
+    --line-height-display: 1.08;
+    --line-height-heading: 1.28;
+    --line-height-body: 1.55;
+    --line-height-tight: 1.2;
+    --line-height-flat: 1;
+
+    --tracking-display-lg: -0.022em;
+    --tracking-display: -0.018em;
+    --tracking-heading: -0.011em;
+    --tracking-body: 0em;
+    --tracking-caps: 0.06em;
+
+    /* Component density anchors */
+    --control-height-sm: 32px;
+    --control-height-md: 40px;
+    --control-height-lg: 48px;
+
+    /* Status: solid / soft / on-soft — extends @essenti-ui/tokens'
+       accent-only soft/solid pair to success/danger/warning/info.
+       Candidates for promotion into the shared semantic layer. */
+    --success-solid: var(--essenti-color-accent-500);
+    --success-soft: var(--essenti-color-accent-50);
+    --success-on-soft: var(--essenti-color-accent-700);
+
+    --danger-solid: var(--essenti-color-red-500);
+    --danger-hover: var(--essenti-color-red-600);
+    --danger-soft: var(--essenti-color-red-50);
+    --danger-on-soft: var(--essenti-color-red-700);
+
+    --warning-solid: var(--essenti-color-amber-500);
+    --warning-soft: var(--essenti-color-amber-50);
+    --warning-on-soft: var(--essenti-color-amber-700);
+
+    --info-solid: var(--essenti-color-blue-500);
+    --info-soft: var(--essenti-color-blue-50);
+    --info-on-soft: var(--essenti-color-blue-700);
+
+    /* Directional data (up/down/flat trend signal) */
+    --data-up: var(--essenti-color-accent-600);
+    --data-down: var(--essenti-color-red-600);
+    --data-flat: var(--essenti-color-neutral-500);
+
+    /* Overlay scrim (no semantic surface-overlay token yet) */
+    --surface-overlay: color-mix(
+      in srgb,
+      var(--essenti-color-neutral-950) 48%,
+      transparent
+    );
+
+    /* Focus rings */
+    --ring-accent: 0 0 0 3px
+      color-mix(in srgb, var(--essenti-color-accent-500) 32%, transparent);
+    --ring-danger: 0 0 0 3px
+      color-mix(in srgb, var(--essenti-color-red-500) 30%, transparent);
+
+    /* Motion — quick, confident, no bounce */
+    --duration-fast: 120ms;
+    --duration-base: 180ms;
+    --duration-slow: 260ms;
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.45, 0, 0.15, 1);
+
+    --transition-colors:
+      color var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard);
+  }
+
+  /* ── Dark mode — local tokens that vary by theme ────────────────
+    Everything else (surface/text/border/accent) comes from
+    @essenti-ui/tokens' [data-theme="dark"] block.
+  */
+  [data-theme='dark'] {
+    --success-soft: color-mix(
+      in srgb,
+      var(--essenti-color-accent-500) 16%,
+      var(--essenti-color-neutral-925)
+    );
+    --success-on-soft: var(--essenti-color-accent-300);
+    --danger-soft: color-mix(
+      in srgb,
+      var(--essenti-color-red-500) 18%,
+      var(--essenti-color-neutral-925)
+    );
+    --danger-on-soft: var(--essenti-color-red-300);
+    --warning-soft: color-mix(
+      in srgb,
+      var(--essenti-color-amber-500) 18%,
+      var(--essenti-color-neutral-925)
+    );
+    --warning-on-soft: var(--essenti-color-amber-300);
+    --info-soft: color-mix(
+      in srgb,
+      var(--essenti-color-blue-500) 18%,
+      var(--essenti-color-neutral-925)
+    );
+    --info-on-soft: var(--essenti-color-blue-300);
+
+    --data-up: var(--essenti-color-accent-300);
+    --data-down: var(--essenti-color-red-300);
+    --data-flat: var(--essenti-color-neutral-450);
+
+    --surface-overlay: rgba(0, 0, 0, 0.6);
+
+    --ring-accent: 0 0 0 3px
+      color-mix(in srgb, var(--essenti-color-accent-400) 40%, transparent);
+  }
+}

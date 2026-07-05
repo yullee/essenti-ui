@@ -76,6 +76,7 @@ Dark mode = semantic remapping only (no component logic changes).
 
 - React library (ESM, tsup)
 - per-component exports
+- Source layout: `src/<Component>/{Component.tsx, Component.css, index.ts}`; shared tokens in `src/styles/`
 - React is peerDependency (^18 || ^19)
 
 Rule: Never bundle React (avoid runtime duplication issues).
@@ -83,14 +84,16 @@ Base UI: headless behavior layer (peerDep if duplication risk).
 
 ## CSS Strategy
 
-Dev: Tailwind. Ship: compiled `dist/styles.css` only.
+Dev: hand-written CSS (BEM-style classes) bound to semantic tokens. No Tailwind. Ship: compiled `dist/styles.css` only.
+
+Cascade layers: `@layer reset, tokens, base, components, utilities;` (fixed order, declared once at build time). Component CSS authored inside `@layer components`; shared tokens inside `@layer tokens`.
 
 Consumer:
 import "@essenti-ui/ui/styles.css";
 
 Rule:
 
-- Must work in a blank project with no Tailwind config (styles.css alone)
+- Must work in a blank project with no build config (styles.css alone)
 - If blocked, do not bypass constraints. Stop and ask for guidance.
 
 ## Components

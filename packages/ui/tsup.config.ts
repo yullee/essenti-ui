@@ -2,10 +2,10 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
   entry: {
-    Button: 'src/Button.tsx',
-    Input: 'src/Input.tsx',
-    Field: 'src/Field.tsx',
-    Table: 'src/Table.tsx',
+    Button: 'src/Button/index.ts',
+    Input: 'src/Input/index.ts',
+    Field: 'src/Field/index.ts',
+    Table: 'src/Table/index.ts',
   },
   format: ['esm'],
   dts: true,
