@@ -25,7 +25,10 @@ export function Field({
   ...rest
 }: FieldProps) {
   const autoId = React.useId();
-  const id = htmlFor ?? autoId;
+  const childId = React.isValidElement(children)
+    ? ((children.props as Record<string, unknown>).id as string | undefined)
+    : undefined;
+  const id = childId ?? htmlFor ?? autoId;
   const descId = description ? `${id}-desc` : undefined;
   const errId = error ? `${id}-err` : undefined;
   const describedBy = [descId, errId].filter(Boolean).join(' ') || undefined;
@@ -34,7 +37,7 @@ export function Field({
     ? React.cloneElement(
         children as React.ReactElement<Record<string, unknown>>,
         {
-          id: (children.props as Record<string, unknown>).id ?? id,
+          id,
           'aria-describedby': describedBy,
           'aria-invalid': error
             ? true
