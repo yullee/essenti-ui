@@ -42,6 +42,10 @@ function handleOnClick<T extends HTMLElement>(
   };
 }
 
+function classesFor(variant: ButtonVariant, size: ButtonSize, className?: string) {
+  return cn('es-btn', `es-btn--${variant}`, `es-btn--${size}`, className);
+}
+
 function Content({
   loading,
   iconLeft,
@@ -51,7 +55,7 @@ function Content({
   return (
     <>
       {loading ? (
-        <span className="es-btn__spin" role="status" aria-label="Loading" />
+        <span className="es-btn__spin" aria-hidden="true" />
       ) : (
         iconLeft
       )}
@@ -62,32 +66,27 @@ function Content({
 }
 
 export function Button(props: ButtonProps) {
-  const {
-    variant = 'primary',
-    size = 'md',
-    loading = false,
-    iconLeft,
-    iconRight,
-    className,
-    children,
-  } = props;
-
-  const classes = cn(
-    'es-btn',
-    `es-btn--${variant}`,
-    `es-btn--${size}`,
-    className,
-  );
-
   if (props.as === 'a') {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars -- drop discriminant so it isn't spread onto the DOM node
-    const { as, onClick, ref, ...anchorProps } = props;
+    const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars -- drop discriminant so it isn't spread onto the DOM node
+      as,
+      variant = 'primary',
+      size = 'md',
+      loading = false,
+      iconLeft,
+      iconRight,
+      className,
+      children,
+      onClick,
+      ref,
+      ...anchorProps
+    } = props;
 
     return (
       <a
         {...anchorProps}
         ref={ref}
-        className={classes}
+        className={classesFor(variant, size, className)}
         aria-busy={loading || undefined}
         onClick={handleOnClick(loading, onClick)}
       >
@@ -98,8 +97,22 @@ export function Button(props: ButtonProps) {
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars -- drop discriminant so it isn't spread onto the DOM node
-  const { as, type = 'button', disabled, onClick, ref, ...buttonProps } = props;
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars -- drop discriminant so it isn't spread onto the DOM node
+    as,
+    variant = 'primary',
+    size = 'md',
+    loading = false,
+    iconLeft,
+    iconRight,
+    className,
+    children,
+    type = 'button',
+    disabled,
+    onClick,
+    ref,
+    ...buttonProps
+  } = props;
 
   return (
     <button
@@ -107,7 +120,7 @@ export function Button(props: ButtonProps) {
       ref={ref}
       type={type}
       disabled={disabled || loading}
-      className={classes}
+      className={classesFor(variant, size, className)}
       aria-busy={loading || undefined}
       onClick={handleOnClick(loading, onClick)}
     >
