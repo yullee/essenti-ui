@@ -78,7 +78,7 @@ Accent theme = `data-accent` attribute remapping (jade default, sapphire optiona
 - React library (ESM, tsup)
 - per-component exports
 - Source layout: `src/<Component>/{Component.tsx, Component.css, index.ts, Component.stories.tsx}`; shared tokens in `src/styles/`
-- React is peerDependency (^18 || ^19)
+- React is peerDependency (^19)
 
 Rule: Never bundle React (avoid runtime duplication issues).
 Base UI: headless behavior layer (peerDep if duplication risk).
@@ -116,7 +116,6 @@ Rule: Components are organized around distinct UI problem spaces.
 
 ## Constraints
 
-- forwardRef required
 - composition over configuration
 - semantic tokens only (no raw values)
 - cn() only for class merge

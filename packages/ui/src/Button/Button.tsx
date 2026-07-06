@@ -2,92 +2,118 @@ import * as React from 'react';
 
 import { cn } from '../cn.js';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'subtle' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
-  fullWidth?: boolean;
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'subtle' | 'danger';
+type ButtonSize = 'sm' | 'md' | 'lg';
+
+interface Props {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   loading?: boolean;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
-  as?: React.ElementType;
+  className?: string;
+  children?: React.ReactNode;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(
-    {
-      variant = 'primary',
-      size = 'md',
-      type = 'button',
-      fullWidth = false,
-      loading = false,
-      disabled = false,
-      iconLeft = null,
-      iconRight = null,
-      as: Tag = 'button',
-      className,
-      children,
-      onClick,
-      onKeyDown,
-      ...rest
-    },
-    ref,
-  ) {
-    const isDisabled = disabled || loading;
-    const isNativeInteractive = Tag === 'button' || Tag === 'a';
+type NativeButtonProps = Props &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof Props> & {
+    as?: 'button';
+    ref?: React.Ref<HTMLButtonElement>;
+  };
 
-    const tagProps = isNativeInteractive
-      ? Tag === 'button'
-        ? { type, disabled: isDisabled }
-        : { 'aria-disabled': isDisabled, tabIndex: isDisabled ? -1 : undefined }
-      : {
-          role: 'button',
-          tabIndex: isDisabled ? -1 : 0,
-          'aria-disabled': isDisabled,
-        };
+type AnchorButtonProps = Props &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof Props> & {
+    as: 'a';
+    ref?: React.Ref<HTMLAnchorElement>;
+  };
 
-    const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-      if (isDisabled) {
-        event.preventDefault();
-        return;
-      }
-      onClick?.(event);
-    };
+export type ButtonProps = NativeButtonProps | AnchorButtonProps;
 
-    const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (
-      event,
-    ) => {
-      onKeyDown?.(event);
-      if (isNativeInteractive || isDisabled) return;
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        handleClick(event as unknown as React.MouseEvent<HTMLButtonElement>);
-      }
-    };
+function handleOnClick<T extends HTMLElement>(
+  loading: boolean,
+  onClick?: React.MouseEventHandler<T>,
+): React.MouseEventHandler<T> {
+  return (e) => {
+    if (loading) {
+      e.preventDefault();
+      return;
+    }
+    onClick?.(e);
+  };
+}
+
+function Content({
+  loading,
+  iconLeft,
+  iconRight,
+  children,
+}: Pick<Props, 'loading' | 'iconLeft' | 'iconRight' | 'children'>) {
+  return (
+    <>
+      {loading ? (
+        <span className="es-btn__spin" role="status" aria-label="Loading" />
+      ) : (
+        iconLeft
+      )}
+      {children}
+      {!loading && iconRight}
+    </>
+  );
+}
+
+export function Button(props: ButtonProps) {
+  const {
+    variant = 'primary',
+    size = 'md',
+    loading = false,
+    iconLeft,
+    iconRight,
+    className,
+    children,
+  } = props;
+
+  const classes = cn(
+    'es-btn',
+    `es-btn--${variant}`,
+    `es-btn--${size}`,
+    className,
+  );
+
+  if (props.as === 'a') {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars -- drop discriminant so it isn't spread onto the DOM node
+    const { as, onClick, ref, ...anchorProps } = props;
 
     return (
-      <Tag
+      <a
+        {...anchorProps}
         ref={ref}
-        className={cn(
-          'es-btn',
-          `es-btn--${variant}`,
-          `es-btn--${size}`,
-          fullWidth && 'es-btn--block',
-          className,
-        )}
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
+        className={classes}
         aria-busy={loading || undefined}
-        {...tagProps}
-        {...rest}
+        onClick={handleOnClick(loading, onClick)}
       >
-        {loading ? (
-          <span className="es-btn__spin" role="status" aria-label="Loading" />
-        ) : (
-          iconLeft
-        )}
-        {children}
-        {!loading && iconRight}
-      </Tag>
+        <Content loading={loading} iconLeft={iconLeft} iconRight={iconRight}>
+          {children}
+        </Content>
+      </a>
     );
-  },
-);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, unused-imports/no-unused-vars -- drop discriminant so it isn't spread onto the DOM node
+  const { as, type = 'button', disabled, onClick, ref, ...buttonProps } = props;
+
+  return (
+    <button
+      {...buttonProps}
+      ref={ref}
+      type={type}
+      disabled={disabled || loading}
+      className={classes}
+      aria-busy={loading || undefined}
+      onClick={handleOnClick(loading, onClick)}
+    >
+      <Content loading={loading} iconLeft={iconLeft} iconRight={iconRight}>
+        {children}
+      </Content>
+    </button>
+  );
+}
