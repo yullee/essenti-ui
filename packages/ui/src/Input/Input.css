@@ -9,6 +9,7 @@
     border: 1px solid var(--essenti-border-default);
     border-radius: var(--essenti-radius-md);
     color: var(--essenti-text-primary);
+    font-family: var(--font-sans);
     transition: var(--transition-colors);
     cursor: text;
   }
