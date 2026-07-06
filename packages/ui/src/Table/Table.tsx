@@ -36,26 +36,25 @@ export interface TableProps<T extends Record<string, unknown>> extends Omit<
     index: number,
   ) => React.HTMLAttributes<HTMLTableRowElement>;
   children?: React.ReactNode;
+  ref?: React.Ref<HTMLTableElement>;
 }
 
-function TableInner<T extends Record<string, unknown>>(
-  {
-    columns,
-    data,
-    density = 'comfortable',
-    hover = true,
-    stickyHeader = false,
-    caption,
-    sort,
-    onSortChange,
-    rowKey,
-    getRowProps,
-    className,
-    children,
-    ...rest
-  }: TableProps<T>,
-  ref: React.ForwardedRef<HTMLTableElement>,
-) {
+export function Table<T extends Record<string, unknown>>({
+  columns,
+  data,
+  density = 'comfortable',
+  hover = true,
+  stickyHeader = false,
+  caption,
+  sort,
+  onSortChange,
+  rowKey,
+  getRowProps,
+  className,
+  children,
+  ref,
+  ...rest
+}: TableProps<T>) {
   const handleSort = (col: Column<T>) => {
     if (!onSortChange) return;
     const dir: 'asc' | 'desc' =
@@ -163,9 +162,3 @@ function TableInner<T extends Record<string, unknown>>(
     </div>
   );
 }
-
-export const Table = React.forwardRef(TableInner) as <
-  T extends Record<string, unknown>,
->(
-  props: TableProps<T> & { ref?: React.ForwardedRef<HTMLTableElement> },
-) => ReturnType<typeof TableInner>;
